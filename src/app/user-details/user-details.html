@@ -1,0 +1,21 @@
+<div class="userlist-container">
+  <div class="main-content">
+    <div class="users-section">
+      <h1>User Details</h1>
+      <div class="user-list">
+        @for (user of users(); track user.id) {
+          <div class="user-card" [class.active]="selectedUser()?.id === user.id" (click)="onSelectUser(user)">
+            <img [src]="user.avatar" alt="{{ user.name }} avatar" width="100" height="100" />
+            <h2>{{ user.name }}</h2>
+            <p>ID: {{ user.id }}</p>
+          </div>
+        }
+      </div>
+    </div>
+    @if (selectedUser()) {
+      <div class="tasks-section">
+        <app-user-tasks [selectedUser]="selectedUser()"></app-user-tasks>
+      </div>
+    }
+  </div>
+</div>
